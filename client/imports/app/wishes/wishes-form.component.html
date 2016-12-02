@@ -1,0 +1,29 @@
+<div class="form-container">
+  <div class="container-background">
+    <div class="form-content">
+      <div class="form-center">
+        <h1>Something you wish for X-mas?</h1>
+        <h2>Add it now! ></h2>
+      </div>
+      <div class="form-center">
+        <form *ngIf="user" [formGroup]="addForm" (ngSubmit)="addWish(); upload.reset();">
+          <div style="display: table-row">
+            <div class="form-inputs">
+              <md-input dividerColor="accent" formControlName="name" placeholder="Wish"></md-input>
+              <br/>
+              <md-input dividerColor="accent" formControlName="description" placeholder="Description"></md-input>
+              <br/>
+              <md-checkbox formControlName="public">Public wish?</md-checkbox>
+              <br/><br/>
+              <wishes-upload #upload (onFile)="onImage($event)"></wishes-upload>
+              <button color="accent" md-raised-button type="submit">Add my wish!</button>
+            </div>
+          </div>
+        </form>
+        <div *ngIf="!user">
+            <h4 class="red">Log in or sign up to view and create wishes!</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

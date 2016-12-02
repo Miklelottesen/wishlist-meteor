@@ -1,0 +1,18 @@
+.wish-details-container {
+  display: table;
+
+  .row {
+    display: table-row;
+    width: 100%;
+
+    .wish-details, .wish-invites {
+      display: table-cell;
+      width: 33.3%;
+      vertical-align: top;
+
+      md-card {
+        margin: 20px;
+      }
+    }
+  }
+}

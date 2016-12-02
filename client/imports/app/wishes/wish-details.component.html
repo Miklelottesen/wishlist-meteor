@@ -1,0 +1,38 @@
+<div class="wish-details-container" *ngIf="wish">
+  <div class="row">
+    <div class="wish-details">
+      <md-card>
+        <h2>{{ wish.name }}</h2>
+        <form layout="column" (submit)="saveWish()">
+          <label>Wish: </label>
+          <md-input [disabled]="!isOwner" [(ngModel)]="wish.name" name="name"></md-input>
+          <br />
+          <label>Description: </label>
+          <md-input [disabled]="!isOwner" [(ngModel)]="wish.description" name="description"></md-input>
+          <br />
+          <br />
+          <md-checkbox [disabled]="!isOwner" [(checked)]="wish.public" name="public" aria-label="Public">
+            Public wish?
+          </md-checkbox>
+
+          <div layout="row" layout-align="left">
+            <button [disabled]="!isOwner" type="submit" md-raised-button color="accent">Save</button>
+            <a [routerLink]="['/']" md-raised-button class="md-raised">Back</a>
+          </div>
+        </form>
+      </md-card>
+    </div>
+    <div class="wish-invites">
+      <md-card>
+        <h2>Added users</h2>
+        <span [hidden]="!wish.public">Public wish, no need to add anyone!</span>
+        <md-list>
+          <md-list-item *ngFor="let user of users | async">
+            <div>{{ user | displayName }}</div>
+            <button (click)="invite(user)" md-raised-button>Invite</button>
+          </md-list-item>
+        </md-list>
+      </md-card>
+    </div>
+  </div>
+</div>
